@@ -102,8 +102,9 @@
         <article id="explanation"></article>
         <div id="coordinates" style="display: none;">replace coordinates</div>
         <script>
-            document.getElementById("go").addEventListener("click", {
-                
+            document.getElementById("go").addEventListener("click", (event) => {
+                console.log('eee');
+                location.assign("http://localhost:8080/app?product=" + document.getElementById("input").value);
             });
         </script>
     </body>
