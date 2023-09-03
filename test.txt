@@ -1,0 +1,63 @@
+
+
+Chapter 2
+
+Terminology
+
+There is no greater impediment to
+
+the advancement of knowledge
+
+than the ambiguity of words.
+
+– Thomas Reid, Scottish philosopher
+
+Terminology Confusion
+
+Words often are laden with baggage. What we think they mean might not always align with what they actually mean. This is particularly the case with the language we use in cybersecurity. The Cyber Defense Matrix uses the five functions laid out in the NIST Cybersecurity Framework (CSF): IDENTIFY, PROTECT, DETECT, RESPOND, and RECOVER. Unfortunately, our imprecise use of these terms taints our understanding of what each of these functions really means. These words are frequently used synonymously and interchangeably in marketing brochures, compliance requirements, and even in the NIST CSF itself. For example, the NIST CSF’s definition of DETECT uses the word IDENTIFY: “Develop and implement appropriate activities to identify the occurrence of a cybersecurity event.”1 So, what is the difference between IDENTIFY and DETECT? Do we IDENTIFY events or DETECT events?
+
+This confusion extends to foundational security concepts like vulnerabilities. Do we IDENTIFY vulnerabilities, or do we DETECT vulnerabilities? Again, the NIST CSF suggests that we DETECT vulnerabilities: “DE-CM-8: Vulnerability scans are performed.”
+
+How about the differences between PROTECT and RESPOND? When we want to remediate a discovered vulnerability or risk, is that a PROTECT action or a RESPOND action? If we were to read NIST’s definition of Risk Management as “the process of identifying, assessing, and responding to risk,”2 it sounds like it is a RESPOND action, but as we will soon see, that is not correct. Although they may seem interchangeable in our everyday vernacular, the actions are functionally very different.
+
+Using physical analogies as an example, there is a major difference between knowing that a house is made of flammable wood (a vulnerability) and knowing that the house is on fire (an event resulting from an exploitation against that vulnerability). Likewise, there is a major difference between treating flammable wood to make it less flammable (mitigating a vulnerability) and putting out a fire (addressing an exploitation against a vulnerability).
+
+The order in which the five functions are listed is significant, since each implies the existence of the prior function. Activities in IDENTIFY let us decide what to PROTECT. Similarly, activities in DETECT let us know what to RESPOND to, while RESPOND activities (and their success or failure) determine what RECOVER activities are required. We are often unable to PROTECT perfectly, so failures or bypasses in our defensive posture require timely notification and attention (i.e., DETECT) to such events.
+
+Left and Right of Boom
+
+To improve our understanding of these terms, it may be helpful to borrow the phrase “left of boom” and “right of boom,” which are idioms originating from the U.S. military. In the original meaning, “boom” was the detonation of an improvised explosive device (IED). “Left of boom” activities focused on efforts to disrupt the ability of the attacker to create a boom. “Right of boom” activities focused on assessing and addressing the damage after the boom has occurred. Applying this concept to the five functions of the NIST CSF puts the functions of IDENTIFY and PROTECT on the “left of boom,” or before a security event. DETECT, RESPOND, and RECOVER happen “right of boom,” or after the event.
+
+A fundamental benefit of the Cyber Defense Matrix structure is that it becomes a forcing function driving strict adherence to consistent functional definitions across all asset classes. In other words, all actions under IDENTIFY and PROTECT for all asset classes (DEVICES, NETWORKS, APPLICATIONS, DATA, and USERS) refer to “left of boom” activities. We cannot label a certain activity “IDENTIFY” for one asset class, and a similar activity “DETECT” for a different asset class. For example, if the discovery and inventory of DATA is properly aligned under IDENTIFY, the same function of discovering and inventorying DEVICES must also fall under IDENTIFY.
+
+Table 3 provides a comparison of some of the key differences between left and right of boom activities.
+
+Left of Boom
+	
+
+Right of Boom
+
+    IDENTIFY, PROTECT
+    Focuses on pre-event activities
+    Associates with
+    risk management
+    Aligns with security engineering
+    Focuses on preventing intrusions
+    Requires structural awareness
+        Analyzing state
+        Inventorying assets
+    Discovers weaknesses
+
+	
+
+    DETECT, RESPOND, RECOVER
+    Focuses on post-event activities
+    Associates with
+    incident management
+    Aligns with security operations
+    Focuses on expelling intrusions
+    Requires situational awareness
+        Analyzing events & activity
+        Investigating state changes
+    Gathers evidence of exploitation
+    against weaknesses

@@ -1,0 +1,10 @@
+VAR Security Solutions, Security Consulting|ABR-PROM provides value added reseller (VAR) security solutions and IT outsourcing to customers in Poland. 
+Data Encryption, Email Security|Absio provides a data security solution that allows organizations and private users to securely store and share email messages and data externally, while maintaining control of its use. 
+Endpoint Security, Data Leakage Prevention, GDPR Compliance|Absolute Software provides persistent endpoint security and management solutions for computers, portable devices, and data. 
+Intrusion Detection, Prevention|Acalvio uses virtualization to create a deceptive network for Advanced Threat Detection. Acalvio's patented solution, ShadowPlex is focused at Timely Detection, High Precision Detection and Cost Effective Detection. 
+Security Consulting, Information Assurance, Managed Security|Accenture provides global professional services, consulting, and outsourced services, including cyber security. 
+Secure File Sharing|Accellion supports secure cloud-based mobile file sharing and collaboration for teams and enterprise organizations. 
+Digital Forensics, Incident Response|AccessData provides a suite data forensics products and services for cyber security and related purposes including eDiscovery. 
+VAR Security Solutions|AccessIT provides IT security and infrastructure solutions for customers through VAR partnerships with major technology providers. 
+VAR Security Solutions|Accunet provides a range of value added security solutions to complement its storage, network, risk, virtualization, and mobility offerings 
+Governance, Risk, and Compliance|ACL provides products and services focused on governance, risk, and compliance (GRC), enterprise compliance monitoring, and data analysis. 

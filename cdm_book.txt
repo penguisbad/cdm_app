@@ -1,0 +1,561 @@
+
+
+Chapter 2
+
+Terminology
+
+There is no greater impediment to
+
+the advancement of knowledge
+
+than the ambiguity of words.
+
+– Thomas Reid, Scottish philosopher
+
+Terminology Confusion
+
+Words often are laden with baggage. What we think they mean might not always align with what they actually mean. This is particularly the case with the language we use in cybersecurity. The Cyber Defense Matrix uses the five functions laid out in the NIST Cybersecurity Framework (CSF): IDENTIFY, PROTECT, DETECT, RESPOND, and RECOVER. Unfortunately, our imprecise use of these terms taints our understanding of what each of these functions really means. These words are frequently used synonymously and interchangeably in marketing brochures, compliance requirements, and even in the NIST CSF itself. For example, the NIST CSF’s definition of DETECT uses the word IDENTIFY: “Develop and implement appropriate activities to identify the occurrence of a cybersecurity event.”1 So, what is the difference between IDENTIFY and DETECT? Do we IDENTIFY events or DETECT events?
+
+This confusion extends to foundational security concepts like vulnerabilities. Do we IDENTIFY vulnerabilities, or do we DETECT vulnerabilities? Again, the NIST CSF suggests that we DETECT vulnerabilities: “DE-CM-8: Vulnerability scans are performed.”
+
+How about the differences between PROTECT and RESPOND? When we want to remediate a discovered vulnerability or risk, is that a PROTECT action or a RESPOND action? If we were to read NIST’s definition of Risk Management as “the process of identifying, assessing, and responding to risk,”2 it sounds like it is a RESPOND action, but as we will soon see, that is not correct. Although they may seem interchangeable in our everyday vernacular, the actions are functionally very different.
+
+Using physical analogies as an example, there is a major difference between knowing that a house is made of flammable wood (a vulnerability) and knowing that the house is on fire (an event resulting from an exploitation against that vulnerability). Likewise, there is a major difference between treating flammable wood to make it less flammable (mitigating a vulnerability) and putting out a fire (addressing an exploitation against a vulnerability).
+
+The order in which the five functions are listed is significant, since each implies the existence of the prior function. Activities in IDENTIFY let us decide what to PROTECT. Similarly, activities in DETECT let us know what to RESPOND to, while RESPOND activities (and their success or failure) determine what RECOVER activities are required. We are often unable to PROTECT perfectly, so failures or bypasses in our defensive posture require timely notification and attention (i.e., DETECT) to such events.
+
+Left and Right of Boom
+
+To improve our understanding of these terms, it may be helpful to borrow the phrase “left of boom” and “right of boom,” which are idioms originating from the U.S. military. In the original meaning, “boom” was the detonation of an improvised explosive device (IED). “Left of boom” activities focused on efforts to disrupt the ability of the attacker to create a boom. “Right of boom” activities focused on assessing and addressing the damage after the boom has occurred. Applying this concept to the five functions of the NIST CSF puts the functions of IDENTIFY and PROTECT on the “left of boom,” or before a security event. DETECT, RESPOND, and RECOVER happen “right of boom,” or after the event.
+
+A fundamental benefit of the Cyber Defense Matrix structure is that it becomes a forcing function driving strict adherence to consistent functional definitions across all asset classes. In other words, all actions under IDENTIFY and PROTECT for all asset classes (DEVICES, NETWORKS, APPLICATIONS, DATA, and USERS) refer to “left of boom” activities. We cannot label a certain activity “IDENTIFY” for one asset class, and a similar activity “DETECT” for a different asset class. For example, if the discovery and inventory of DATA is properly aligned under IDENTIFY, the same function of discovering and inventorying DEVICES must also fall under IDENTIFY.
+
+Table 3 provides a comparison of some of the key differences between left and right of boom activities.
+
+Left of Boom
+	
+
+Right of Boom
+
+    IDENTIFY, PROTECT
+    Focuses on pre-event activities
+    Associates with
+    risk management
+    Aligns with security engineering
+    Focuses on preventing intrusions
+    Requires structural awareness
+        Analyzing state
+        Inventorying assets
+    Discovers weaknesses
+
+	
+
+    DETECT, RESPOND, RECOVER
+    Focuses on post-event activities
+    Associates with
+    incident management
+    Aligns with security operations
+    Focuses on expelling intrusions
+    Requires situational awareness
+        Analyzing events & activity
+        Investigating state changes
+    Gathers evidence of exploitation
+    against weaknesses
+
+Table 3: Left and Right of Boom Activities
+
+On the left side of boom, we need structural awareness of our environment. Structural awareness starts with an understanding of what assets you have, the state of those assets, and how the assets relate to one another. The state information includes how important the assets are, how they are configured, how they are exposed or weak, and how they are protected. The relational information characterizes how these assets are fitted together to make the whole system.
+
+Boom occurs when a weakness is successfully exploited. Once that has happened, we are on the right of boom. We need situational awareness through an analysis of recent events and activities in our environment to understand if any of our assets have been compromised. But structural awareness is also vitally important here. If you are a firefighter about to run into a burning house, you will want structural awareness of the house, which includes answers to questions such as:
+
+    What are the blueprints of the house?
+    Is the house built to code?
+    Are there locked doors that will impede our response?
+    Where are the crown jewels that need rescue first?
+    Are there toxic or dangerous materials?
+
+Situational awareness and structural awareness complement each other to support incident response activities and will be covered in greater detail in Chapter 6.
+
+What Does Each Function Mean?
+
+The left/right of boom distinction is just one of the internal consistency checks the Cyber Defense Matrix uses to validate its definitions. The matrix uses the same words for the five functions as the NIST CSF. But owing to the internal consistency requirements of the matrix, the subfunctions and activities associated with each function in the matrix differ from those outlined in the NIST CSF.
+
+The NIST CSF uses ordinary English language words like identify, protect, detect, respond, and recover. However, in their ordinary English meaning, these words are vague, overlapping, sometimes synonymous. It does not help that the framework authors repeatedly use the word “identify” to describe the function of DETECT, illustrating this confusion.
+
+The NIST CSF authors never address these definitional issues and misalignment is the inevitable result. For example, there are a few instances where the same activity happens in two different functional categories. ID.RA-1 under IDENTIFY specifically mentions identifying vulnerabilities. But then we also have something about scanning for vulnerabilities in DE.CM-8 under DETECT. Are we not doing the same function there? Is not scanning for vulnerabilities in DE.CM-8 the same as identifying vulnerabilities in ID.RA-1? You can see how confusion may arise from labeling the same activity under two separate functional categories.
+
+Understanding the differences between IDENTIFY and DETECT
+
+When we consider the five functions of the NIST CSF with the left and right of boom dichotomy, it becomes clear how to distinguish between semantically similar terms such as IDENTIFY and DETECT. For example, if we consider the notion of a vulnerability as a structural weakness, then the discovery and enumeration of vulnerabilities is best aligned under IDENTIFY. Conversely, the exploitation of a vulnerability is best aligned under DETECT.
+
+Suppose that a zero-day vulnerability is not discovered prior to it being exploited. Since this discovery occurs on the right of boom, should the discovery of this type of vulnerability be aligned under DETECT? If we see it that way, then the subsequent action, RESPOND, must also include patching that vulnerability. If we take this interpretation, we arrive at a situation where patching, normally a PROTECT activity, ends up being misconstrued as a RESPOND activity.3 That cannot be right.
+
+Instead, what actually happens is that we IDENTIFY a newly discovered vulnerability (that has already been exploited) and take actions to PROTECT ourselves from it so that future boom events can be avoided. At the same time, because that vulnerability has already been exploited, we must DETECT that exploitation and RESPOND to contain and eradicate any intruders. Patching the vulnerability (a PROTECT activity) will not expel intruders that are already present, but it can prevent future intrusions (i.e., it enables us to avoid getting to the right of boom this way again).
+
+Understanding the differences between PROTECT and RESPOND
+
+We want to bring this same consistency to the way we interpret the difference between PROTECT and RESPOND. During PROTECT, we address any deficiencies found through IDENTIFY. During RESPOND, we address any incidents found through DETECT. The correction of any deficiencies found during DETECT or RESPOND is still a PROTECT action since the intent of the correction is to avoid future exploitation against that deficiency.
+
+Returning to IDENTIFY and PROTECT for an exploited vulnerability does not imply a loop. Rather, as shown in Figure 2, it means that we are starting a new security activity thread which will systematically go through the logical order of the five functions, starting again with IDENTIFY.
+
+Figure 2: Sequencing of Activities Across the NIST CSF
+
+Even though a previously unknown vulnerability may be revealed during DETECT-oriented activities (e.g., during an analysis of security events), it should still be considered an IDENTIFY function since it will trigger other related activities to determine where else is the vulnerability present (IDENTIFY) and if, where, and how it should be patched (PROTECT). In addition, for the existing incident, standard RESPOND and RECOVER activities would need to continue.
+
+Understanding the differences between PROTECT and DETECT
+
+There is further ambiguity around the function of DETECT. Most usages of the word “detect” in marketing materials are imprecise. The word “detect” can often be replaced with the word “logged,” which is not actually performing the true function of DETECT. According to the NIST CSF, logging is a PROTECT function (PR.PT-1), but because logs are used for DETECT, the activity of logging is often mislabeled as DETECT.
+
+When these logs are analyzed (DE.AE-2), correlated (DE.AE-3), and alerting threshold established (DE.AE-5), we are entering the realm of DETECT. Where it is nuanced and unclear is if we are filtering logs, particularly against a set of patterns that correspond to known attacks. Does the action of filtering fall under PROTECT or DETECT? What about other telemetry that we gather within our environment? How does that factor in? To help understand these differences, I offer a definition for these and other related terms that I will try to use consistently throughout the book:
+
+    Telemetry comes from instrumentation in IDENTIFY functions and entails information on the state of the asset. This Telemetry provides structural awareness and includes information such as the asset’s configuration and vulnerabilities. Many DETECT tools require this Telemetry (which often leads to the commonly experienced “Yet Another Agent Problem”).
+    Logging comes from PROTECT functions and captures information on Events, which are interactions with the asset and changes to the state of the asset.
+    Filtering is implemented on Telemetry and Logging to avoid information overload. Filtering is usually done in bulk and happens left of boom.
+    Rules can trigger against undesired state conditions, unexpected state changes, matches against a string value, volume thresholds, and many other parameters found in either Filtered data or in raw Telemetry and Logs. There are subtle nuances regarding the placement of Rules on the left of boom or right of boom. The point of making this distinction is to ensure that we have a clear understanding of expectations when we engineer Protection Rules versus Detection Rules. The degree of dependency curves on the Cyber Defense Matrix indicate that PROTECT activities should rely more on TECHNOLOGY whereas DETECT activities shift that reliance more towards PEOPLE (i.e., security analysts), and this applies to Rules as well.
+    Protection Rules are generally well defined (i.e., false positives are rare) with a highly deterministic course of action (i.e., all possible outcomes are known). Preventative action based on Protection Rules is generally taken left of boom leveraging technology and requiring minimal, if any, human intervention (e.g., antivirus match on known malware or intrusion prevention system match on known malicious traffic).
+    Detection Rules for when we wish a human analyst to be Alerted start moving us to the right of boom to DETECT. If a Detection Rule generates Alerts that are not meant for human consumption, but are sent to humans anyway, this can result in a tremendous amount of noise and frustration for security analysts. Therefore, Detection Rules should trigger automated Enrichment so that analysts have as much contextual and environmental awareness (see Chapter 6 for the meaning of those terms) as possible to make well-informed decisions on whether or not to move to the next stage of RESPOND. Once this Enrichment has occurred to support analyst decision-making, it can be turned into an Alert.
+    Alerting is based on when a single or combined set of Rules are triggered. As a general best practice, a triggered Rule should be followed with as much automation as possible before Alerting because unenriched Alerts waste precious cycles of human analysts who are monitoring for Alerts.
+
+Despite all the automation that we might have to support our DETECT functions, human analysts are central to the function of DETECT. The DETECT function should drive toward an incident management decision on whether or not to RESPOND.4 Simple logging of events does not drive that outcome and should not be included as a part of a DETECT function; thus logging remains in PROTECT.
+
+What Is an Asset?
+
+When it comes to the five asset classes of the Cyber Defense Matrix (DEVICES, NETWORKS, APPLICATIONS, DATA, USERS), there is no logical order comparable to the one we see with the NIST CSF functions. They are listed in the same order each time for the sake of consistency, but the order itself is not significant. What is significant is that the asset classes are intended to be mutually exclusive and collectively exhaustive (MECE) as mentioned in Chapter 1.
+
+Because the Cyber Defense Matrix aims to be a comprehensive checklist, to ensure that no asset is overlooked, it is more explicit and specific on what those assets are: DEVICES, APPLICATIONS, NETWORKS, DATA, and USERS. The matrix takes that which is implicit and makes it explicit and forces us to apply all five NIST CSF functions to all five asset classes. This internal consistency of the matrix is what drives much of its utility as a tool for systematically understanding our security environment. In addition, the term “asset” is not left ambiguous. By being more specific and consistent in defining an asset, the Cyber Defense Matrix can ensure that all potential attack surfaces in an organization are considered.
+
+In contrast, the NIST CSF is not clear in defining what is an asset. For example, in the function of IDENTIFY, the NIST CSF refers to “systems, people, assets, data, and capabilities.”5 Systems, people, and data roughly correspond to some of the five asset classes in the Cyber Defense Matrix, but what exactly is an “asset” in this context? Later in the NIST CSF, we see asset management as a category of IDENTIFY (ID.AM).6 There are IDENTIFY subcategories for DEVICES (ID.AM.1), APPLICATIONS (ID.AM.2), and NETWORKS (ID.AM.3). ID.AM.5 touches upon DATA, but only in the context of prioritization. And there is nothing at all for USERS, except for identifying their cybersecurity roles (ID.AM.6). Practitioners know that understanding who our USERS are is a critical part of IDENTIFY, yet the NIST CSF does not explicitly include it. A reference to the USERS asset class does eventually appear under the function of PROTECT in the category of Identity Management, Authentication, and Access Control (PR.AC), which lumps them together with systems that lock doors.
+
+Gaps continue to appear as we move into PROTECT. The NIST CSF defines PROTECT as “Develop and implement appropriate safeguards to ensure delivery of critical services.”7 The notion of an asset is even more vague here than in IDENTIFY. What specific asset or classes of assets are being referenced? The NIST CSF does include categories like Awareness and Training (PR.AT), which correspond to USERS-PROTECT, and Data Security (PR.DS), which corresponds to DATA-PROTECT. But where are the categories that PROTECT our NETWORKS, APPLICATIONS, or DEVICES? There is a catch-all category of Protective Technology (PR.PT), which is defined as “ensuring the security of systems and assets.” Perhaps this is where the remaining three asset classes are covered; however, the NIST CSF wording is still vague with respect to defining what exactly is an “asset.”
+
+Likewise, in DETECT, specifically DE.CM-7, only four asset classes are covered: unauthorized personnel (USERS), connections (NETWORKS), devices, and software (APPLICATIONS). There is no explicit mention of any DETECT functions that cover DATA, even though DATA assets are covered in PROTECT (PR.DS).
+
+Once we get into RESPOND and RECOVER, the NIST CSF ceases to explicitly call out any particular type of asset. Even being as generous as we can with these definitions, it is clear that these inconsistencies in the NIST CSF definitions leave too much room for gaps, as seen in Figure 3.
+
+Figure 3: Asset Class Coverage in the NIST Cybersecurity Framework
+
+These inconsistencies and vagaries in the NIST CSF make it much more likely that we will unwittingly leave holes in the defense of our assets. By being specific in defining what is an asset, and consistent in applying each of the NIST CSF functions to them, the Cyber Defense Matrix ensures that the full range of people, process, and technology capabilities can be properly mapped to each asset class. Through this mapping, we can then see gaps in our security posture across our whole environment.
+
+Clarifying Ambiguities Among Asset Types
+
+The terms that describe assets seem deceptively simple; however, they too can lack precision because the same terms can mean different things to different people. This can make it tricky to map items onto the Cyber Defense Matrix correctly and consistently.
+
+This is exacerbated by the growing convergence and complexity of today’s IT environments. In an era of cloud services, outsourcing, and hybrid infrastructure, it may not always be clear how some of the five asset classes are MECE. For example, what asset class is “cloud?” Does the term “infrastructure” refer to DEVICES (i.e., servers) or NETWORKS? Does firmware align with DEVICES or is it part of APPLICATIONS?
+
+The Cyber Defense Matrix is not perfect. It is a work in progress, so let us start by laying out a gray area — a terminology issue I have wrestled with in developing the matrix.
+
+Applications versus Devices
+
+One of the areas that I have struggled with in developing the matrix is the question of where to draw the line between APPLICATIONS and DEVICES. At first glance, this might seem a simple question. DEVICES are hardware and APPLICATIONS are software, right? Well, yes, up to a point. But what about firmware? What about operating system software? Or the software that we write? When it comes to security controls, do we treat software that we build differently from the software that we buy?
+
+Remember that the matrix is intended as a tool for practitioners to group similar items together. As a practical matter, when using the matrix, it makes more sense to treat the operating system as part of the DEVICE it is running on. When we look for vulnerabilities on a machine (DEVICE-IDENTIFY) we look at the operating system. If the operating system is vulnerable and gets exploited, it is the DEVICE that is at risk. To fix the vulnerability (PROTECT), we patch the operating system on the DEVICE.
+
+Operating systems and firmware are at one end of the software spectrum. At the other end are our own in-house built apps, for which we own and develop the source code. In between is commodity software like email clients, web browsers, or tool suites like Microsoft Office.
+
+The APPLICATION vs. DEVICE distinction is one place where the bright lines of the matrix can actually mask something of a gray area. There is a spectrum of different types of software. One good test to make sure we are mapping asset classes correctly is to move to the next function and see if the asset class remains the same, as I did when thinking about operating systems just now.
+
+Using this test, we generally find that enterprises deal with commodity applications in the same way they deal with an operating system. We find (IDENTIFY) and remediate (PROTECT) vulnerabilities on the DEVICE. Even if the application is open source, and we have access to the source code, we will still deal with vulnerabilities the same way we do for commercial software. We look for them by scanning software on the DEVICE, and then fix them by applying a patch from the developer on the DEVICE where the program is loaded.
+
+By contrast, when dealing with in-house built applications, vulnerabilities are found (IDENTIFY) by testing the source code itself with Static or Dynamic Application Security Testing. Any vulnerabilities we find are typically fixed in a development environment, not on the DEVICE. If we are unable to fix the application directly, we can use tools like a Web Application Firewall (WAF) or Run-time Application Self Protection (RASP) to offer another layer of PROTECT capabilities. The WAF is an indirect fix for a vulnerability. It does not cure the flaw, but it PROTECTS the flawed application.
+
+This means that for in-house built applications, the capabilities to perform the functions of IDENTIFY and PROTECT are very different from what is needed for commodity software. Because of this, the Cyber Defense Matrix defines APPLICATIONS as only those programs that the enterprise has created and/or for which it builds and maintains the source code. Commodity applications, like operating systems and firmware, are considered part of the DEVICE asset class.
+
+These definitions are admittedly somewhat counterintuitive, but remember that the matrix is designed for practitioners to find like-for-like items grouped together. If we have a mismatched mapping, then we might bring the wrong capabilities to the fight or fight to secure the wrong things. For example, in most enterprises, the in-house software included in the APPLICATIONS asset class comprises the crown jewel of the organization’s intellectual property. Defending it is a key task for security practitioners. Drawing the line in this fashion ensures that the defensive functions we perform on the APPLICATIONS asset class are focused on those crown jewels. If the APPLICATIONS class includes commodity software, APPLICATIONS-IDENTIFY and APPLICATIONS-PROTECT will include a lot of technologies that do not help us defend our in-house software. Worse, we can end up with a gap in our security posture because irrelevant capabilities may obscure the fact that we have a gap there.
+
+Users versus Identity
+
+The term “Identity” is most often directly associated with the USER asset class. In some cases, I have seen the USER asset class replaced by the term “Identity.” The main misconception here is that “Identity” is synonymous and unique to the USER asset class. However, every asset has an identity. For example, DEVICES have device certificates, APPLICATIONS have TLS/SSL certificates, NETWORKS have IP addresses, DATA has hashes and other metadata. All these are identity attributes that are distinct to each asset class. Identity management is a significant concern that deserves special attention and many of the shortfalls may be found in the USER asset class, but the challenges of identity management are not isolated to just the USER asset class.
+
+Enforcing Functional Consistency
+
+One of the Cyber Defense Matrix’s most useful features is the internal consistency it enforces. Within a given function (e.g., IDENTIFY), the pattern of activities for each subfunction must repeat for each asset class. For instance, one of the first activities within IDENTIFY is the subfunction of inventory. This is often also expressed as asset visibility, and it precedes virtually all subsequent security activities. We must know about the existence of an asset and its attributes, especially those attributes that are uniquely associated with the asset (i.e., its identity), before we can proceed.
+
+This subfunction of inventory applies for every asset class, but the terminology that we normally use may slightly differ for each class. The term “inventory” may not even be used; a DATA inventory might be better known as a data catalog, and a USERS inventory might be called a people or role directory. Regardless of the terms that are specific to a particular asset class, we should expect to see some comparable form of that activity within the IDENTIFY function for each asset class.
+
+After inventorying, usually we want to prioritize or classify the asset (i.e., understand impact); examine its attack surfaces for weaknesses (i.e., understand vulnerabilities); and model the attacks that may come against it (i.e., understand threats). These are three key components to perform a proper risk assessment. In essence, for each asset class, we are asking the following four questions:
+
+    Do we have something (inventory)...
+    That we care about (impact)...
+    That has weaknesses (vulnerabilities)...
+    That someone is after (threats)?
+
+If the answer is no, there is no need to progress further. But if the answer is yes, then we must make a risk management decision as to whether to move to PROTECT the asset under evaluation. In this fashion, the Cyber Defense Matrix, as it moves from function to function across each asset class, provides a consistency check to ensure that all subfunctions have been considered. For every function and for each asset, we can look forward and backward across the subfunctions, and up and down across the assets, to check that what we are doing is consistent.
+
+Based on our risk tolerance, not every asset class might require the execution of every subfunction (particularly those under PROTECT) under every circumstance. But for each asset class, all subfunctions should at least be considered. We will have to ask ourselves why are we not doing subfunctions #1, #2, #3, and #4 for this asset class. We may choose to ignore a box or risk-accept the absence of a control, but the Cyber Defense Matrix will not let us forget about it.
+
+This internal consistency check is a great illustration of the value of the matrix in providing a comprehensive view of our security environment, for it forces us to consider each step in turn. Every security activity has to go through that five-function cycle. And the cycle has to be repeated — even if some functions are modified or rejected altogether in some cases — for each of the five asset classes.
+
+1	Framework for Improving Critical Infrastructure Cybersecurity, Version 1.1, April 16, 2018, https://doi.org/10.6028/NIST.CSWP.04162018, page 45.
+
+2	Ibid., page 46.
+
+3	This is a situation where the term remediation is also often unclear and misunderstood. Depending upon the context and how it is interpreted, remediation could refer to either a left of boom activity (remediation to address an open risk issue) or a right of boom activity (remediation to address an ongoing incident).
+
+4	This mirrors the interplay between IDENTIFY and PROTECT where the end result of an IDENTIFY function is a risk assessment, which is used to make a risk management decision on whether or not to PROTECT.
+
+5	Framework for Improving Critical Infrastructure Cybersecurity, Version 1.1, April 16, 2018, https://doi.org/10.6028/NIST.CSWP.04162018, page 7.
+
+6	Ibid., page 24.
+
+7	Ibid., p 7.
+
+Chapter 3
+
+Mapping Security Technologies and Categories
+
+The true beginning of scientific
+
+activity consists … in describing
+
+phenomena and then in proceeding
+
+to group, classify and correlate them.
+
+– Sigmund Freud
+
+Bringing Order to Marketing Chaos
+
+In this chapter, we will consider the first use case for the matrix, and the one for which it was originally designed: mapping security technologies. By figuring out where security technologies and products sit on the Cyber Defense Matrix, we can ensure that we are defending our key assets, avoiding duplication or overlap, and identifying possible gaps or blind spots where we lack needed coverage.
+
+This may seem a simple exercise, but it can be wickedly hard. Thanks to the vague, exaggerated, or otherwise misleading claims generally made in marketing literature, it is often difficult to figure out what a cybersecurity product actually does. A healthy dose of skepticism can help us boil away the marketing froth, but that is only the first step. We still need to replace it with more useful plain-English descriptors — and figure out where the product fits in our security environment.
+
+Other approaches to this problem, such as the ones taken by Optiv1 and Momentum,2 use a taxonomy of some kind. However, this merely produces long lists of product categories and vendor logos. They are not in any particular order and, despite their length, there is no way to tell for sure whether the lists are actually exhaustive.
+
+Some refer to themselves as a periodic table of cybersecurity elements. While that usually results in a pretty table, it is often misleading. In chemistry, each column of the periodic table contains elements that predictably behave in similar ways. For this reason, a true periodic table can reveal the nature of elements yet to be discovered. However, none of the periodic tables offered by various cybersecurity vendors and resellers exhibit this predictive power.
+
+In contrast, the structure of the Cyber Defense Matrix provides a more methodical and consistent approach to organize these cybersecurity elements. By mapping products to the appropriate boxes on the matrix, we can ensure that we have the security capabilities we need in every area we need them.
+
+The labels for the Cyber Defense Matrix boxes (e.g., DEVICE-PROTECT) are much less exciting and glamorous-sounding than the categories vendors typically use to describe their products (e.g., “autonomic vulnerability remediation”), just as “apples” is less appealing than “golden delicious” or “honeycrisp.” But they are also less distracting. They are keyed to the basic technology categories that most practitioners are familiar with, not the frothy titles used to distinguish one product from all its competitors in a crowded and noisy market.
+
+Since vendors come and go (and keep coming out with new or allegedly improved products while they are around), our focus here will be on mapping product categories — in other words, on providing rules of thumb to allocate capabilities to a particular box in the matrix. Specific mappings for contemporary vendor offerings can be found on the companion website: https://cyberdefensematrix.com.
+
+Some Rules of Thumb
+
+Let us start with some broad rules of thumb which will help us map security technologies correctly.
+
+For IDENTIFY, PROTECT, and RECOVER, the asset class mapped should be the one subject to the function, the first-order asset that is being identified, protected, or recovered, regardless of where the function actually operates. A common error in mapping occurs when a capability is mapped to where it lives versus what it secures. For example, a web application firewall lives on the network, but it is protecting applications, so the appropriate mapping is APPLICATION-PROTECT.
+
+For DETECT, the asset class mapped should be chosen based on the use case rather than on where the telemetry used in the detection originates. For example, an insider threat tool may leverage telemetry from DEVICES and NETWORKS, but the use case is specific to the USER class of assets, so the appropriate mapping would be USER-DETECT.
+
+For RESPOND, the asset class mapped should be based on the asset that is being responded to or investigated. For example, a forensic tool that digs through packet captures would be mapped to NETWORK-RESPOND. If it is a forensic tool that digs through a hard drive, it would be DEVICE-RESPOND. Forensic reconstruction of queries that were run against a database would be DATA-RESPOND. For security orchestration and response (SOAR) tools, the mapping is dependent upon the modules or connectors that enable response actions against a particular asset class.
+
+One helpful trick to double check that a security technology is being mapped to its correct asset class and function is through pattern matching. There are three primary ways that the Cyber Defense Matrix facilitates pattern matching when mapping security technologies.
+
+    Asset consistency patterns
+    Functional consistency patterns
+    First-order vs. second-order patterns
+
+Asset consistency patterns. Once a technology has been mapped to a particular asset class, we can move forward to the next function in the matrix and confirm if related technologies still apply to the same asset class. For example, if a product finds vulnerabilities in applications (APPLICATION-IDENTIFY), then we should expect something in the next function (PROTECT) that can address those vulnerabilities, such as runtime application self protection (RASP). If we do not, that is a sign that we need to revisit our mapping decision.
+
+Take vulnerability enumeration for commercial software such as Adobe Acrobat, for example. Our first instinct might be to place this product in APPLICATION-IDENTIFY. If the pattern holds, we will expect the technologies for patching that software to be found in APPLICATION-PROTECT — but they are not. Instead, they are found in DEVICE-PROTECT. This suggests that the vulnerability enumeration tools for commercial software should actually be in DEVICE-IDENTIFY.3
+
+Functional consistency patterns. Once we map a technology to a particular function, we can check to see if the subfunctions performed are consistent when applied to different asset classes. For example, given that a network firewall is a form of access control for a NETWORK, it would seem to map to NETWORK-PROTECT. To check that PROTECT is the correct function for access controls, we can verify if the subfunction of using access controls (usually through deny lists or allow lists) to prohibit or constrain access to some asset continues to make sense when aligned under PROTECT for other asset classes. When this subfunction is applied to DEVICES, the deny lists can be virus signatures (e.g., antivirus), and the allow lists support the capability typically referred to as application control.4 When this subfunction is applied to DATA, the deny lists can be personal identifiable information (PII) or credit card numbers (e.g., data loss prevention), and the allow lists can specify data that usually gets flagged as false positives. In a similar fashion, we can continue to apply this consistency check for all other asset classes to determine that the subfunction of access controls using deny lists and allow lists falls best under PROTECT.
+
+Data loss prevention (DLP) serves as a good example for a failed functional consistency pattern check because it is commonly miscategorized as DATA-DETECT. This is because DLP is often implemented in monitoring mode only, without blocking any content because it is too disruptive to normal business operations. However, DLP maps to DATA-PROTECT even if it is not actually preventing any data leakage. Regardless of whether one chooses to operate in 100% blocking mode, 0% blocking mode (i.e., monitoring mode), or somewhere in between, the mapping of the capability does not change because its core function has not changed. A DLP capability operating at 0% blocking is still mapped to DATA-PROTECT, and a firewall operating with an “any-any” rule (i.e., not blocking anything) is still mapped to NETWORK-PROTECT. The fact that one may choose to operate such capabilities without taking advantage of its core functionality does not change the mapping of that capability within the matrix.
+
+First-order vs. second-order patterns. What does a firewall do? At the first-order level, its primary purpose is to PROTECT the NETWORK. However, I often get the answer that it also PROTECTS DEVICES, DATA, and all other sorts of assets. In addition, similar to the inconsistency mentioned above about DLP being a DETECT tool, I often hear that a firewall maps to NETWORK-DETECT because the telemetry and alerts from a firewall can be used to hunt for intrusions.
+
+While this may be true as a second-order effect of the firewall, it is not as a first-order purpose. When mapping to the Cyber Defense Matrix, the capability should be placed against the asset and function that align best with the capability’s primary, first-order asset and function. If it seems that a specific capability aligns against multiple assets or functions, we will likely find that we are mapping to its secondary purpose. It is easy to get fooled by marketing exaggeration. A common indicator that a product feature is achieved as a second-order effect are qualifying words such as “helps,” “supports,” and “enables.” These words usually indicate that another separate capability is required in order to achieve the desired effect.
+
+The problem with mapping to second-order effects is that it introduces too many unbounded possibilities. For example, we (and many vendors) could claim that many security capabilities PROTECT DATA, but most do that as a byproduct of protecting something else first. An endpoint protection platform (EPP) primarily maps to PROTECT-DEVICE, and as a secondary capability could map to PROTECT-DATA, but the second-order effect could also include PROTECT-USER, PROTECT-NETWORK, and everything else that the endpoint touches. Because the second-order effects are practically limitless, they should not be considered when mapping to the Cyber Defense Matrix.
+
+Security Technology Categories Mapped
+
+At this point, it might be useful to go through a list of various security technology categories and understand how I have mapped them. By explaining the thinking behind each of my choices, I hope to offer a deeper understanding of the structure and function of the Cyber Defense Matrix. It may be useful to pause and consider how you might map each of the categories below before proceeding to read my explanation of its mapping.
+
+Email or web security gateway. Gateways serve as a means to PROTECT, so the alignment to the function is straightforward. However, which asset class does email and web security map to? Does it map to DEVICE since we commonly find email clients and web browsers on devices? Does it map to USER since these gateways help users avoid encountering malicious phishing emails and websites? Does it map to NETWORK since it operates on the network and controls the flow of specific types of traffic? Does it map to DATA since these help prevent phishing attacks which could lead to a data breach? It seems as though this category could map to multiple asset classes. When this happens, it is likely that we are including the second-order effects of the capability. When we consider the primary function of a gateway, it is to control access to a resource. For this category, the primary resource in question is the email client or web browser on a user’s DEVICE, so the mapping for these two categories is DEVICE-PROTECT.
+
+DDoS mitigation. DDoS attacks are generally intended to consume two types of resources: network bandwidth and application processing cycles. This corresponds to the NETWORK and APPLICATION asset classes respectively, and products in this category typically focus on only one or the other. These capabilities do not actually prevent a DDoS attack, but rather minimize the impact from such an attack. When a DDoS attack occurs, incident responders often enable DDoS mitigation services to dampen or eliminate the impact of the attack by filtering and/or sinkholing traffic, and as such, the mapping for this category is NETWORK-RESPOND or APPLICATION-RESPOND.
+
+Some vendors may offer these services in an “always-on” mode, preemptively examining incoming requests, searching for previously identified patterns of a DDoS attack, and routing any such requests through the DDoS mitigation provider’s own network infrastructure for network-centric DDoS attacks. This would suggest mapping to the function of PROTECT; however, these capabilities do not actually stop or prevent a DDoS attack. Rather, they provide a faster, more immediate response to a DDoS attack, similar to the way a sprinkler system in a building does not stop or prevent a fire, but helps reduce its impact.
+
+Data loss prevention. Data loss prevention (DLP) is equivalent to a DATA firewall, which can be set up to prevent certain kinds of information from traversing specific boundaries in the enterprise. Although it has the capability to block data movement, DLP is often configured to simply monitor and log events instead due to the high number of false positives often observed by operators. Blocking and event logging is considered a PROTECT function; however, the fact that DLP is often configured with 0% blocking does not change it from being a PROTECT function. DLP controls are typically installed on the network, but they can also be DEVICE-centric (e.g, restrictions on whether data can be written to removable media) or APPLICATION-centric (e.g., SaaS DLP). However, this does not change the mapping because, as a PROTECT function, DLP is mapped to the asset class being protected — not where it operates. As such, the mapping for the category of DLP is DATA-PROTECT.
+
+Data backup. At first glance, this might look like a PROTECT activity. Backing up data could be seen as protecting the availability of the data. Making the backup happens left of boom. However, it is not put to use until right of boom — after something bad has happened — which points to a right of boom mapping instead. We can also use pattern matching to see that data backup does not belong in PROTECT. Making a copy and storing it someplace for future retrieval does not fit the pattern of what the PROTECT function does in relation to any other asset class. Indeed, the closest analogue to a data backup — swapping in clean machines for infected ones — is considered a RECOVER activity, even though the machines will likely be purchased left of boom. In fact, if you think about it, a lot of activities to support RECOVER should be in place left of boom before any event has happened. We would not want to be doing our planning for business continuity or disaster recovery after a security event has happened.
+
+Data discovery and classification. The asset class is clearly DATA, and the underlying activity is similar to inventorying, in that this capability is intended to generate a comprehensive data catalog. In some products, the discovery process also uncovers vulnerabilities. An example of such a vulnerability would be an open file share or a publicly accessible Amazon Simple Storage Service (S3) bucket. Sensitive data that is left unencrypted and exposed in a way that might allow access by unauthorized people would also be considered a vulnerability. How does one know that a particular piece of DATA is sensitive? The data owner would need to prioritize it, and one of the main means for doing this is through data classification tools. Some of these tools work in conjunction with data discovery tools, while others can operate as a stand-alone capability. Whether cataloging DATA, finding vulnerabilities in DATA, or classifying DATA, this capability aligns to DATA-IDENTIFY.
+
+Data masking, encryption, tokenization, etc. These DATA-centric capabilities focus on limiting access to sensitive data, either by removing it or by converting it to other forms that it is not exposed during normal operations. Thus, this maps to DATA-PROTECT.
+
+Application security testing. As the name suggests, this aligns to the APPLICATION asset class. One of the subfunctions of IDENTIFY is vulnerability identification, and that is what application security testing tools do — identify where we might have vulnerable code in our in-house built software. They do not perform the actual remediation of the vulnerability, which would be a PROTECT function. Thus, the mapping is APPLICATION-IDENTIFY.
+
+Web application firewall. Web application firewalls (WAF) examine web application traffic and are set to block malicious web requests or alert according to a defined set of rules. Although WAFs live on the NETWORK, they shield web APPLICATIONS from attacks that attempt to exploit vulnerable application code. One could argue that, because a WAF shields against SQL injection attacks (which can expose sensitive information), WAFs align against the DATA asset class. However, this is a second-order effect. The primary effect is to shield the application itself from attack. In addition, some implement WAFs in monitoring mode, choosing not to implement some of the blocking features for fear of breaking their web applications. Regardless of whether a WAF is operating at 100% blocking mode, 0% blocking mode, or anywhere in between, it is still performing a PROTECT function. Thus, the mapping for the WAF category is APPLICATION-PROTECT.
+
+Network intrusion detection system (IDS) vs. network intrusion prevention system (IPS). What differentiates an IDS from an IPS? An IPS, as the name suggests, prevents NETWORK intrusions by stopping known attacks before they progress further. This naturally aligns with the PROTECT function, so the IPS maps to NETWORK-PROTECT.
+
+If an IPS is deployed leveraging 100% of its proactive blocking capabilities, it will likely break legitimate and critical business processes. One common way to avoid this is to deploy the IPS in monitoring mode (0% blocking) and then gradually turn up the dial, enabling more and more rules, signatures, and heuristics that block suspicious traffic until something important breaks. In monitoring mode, an IPS is basically like an IDS. The term “detection” in IDS may seem to suggest that an IDS maps to the function of DETECT; however, as with DLP and WAFs, the mapping of the capability does not change when we choose to operate it at a lower level of effectiveness.
+
+As a rule, changing the way that technology is configured should not change its mapping. Regardless of whether the capability operates at 0% blocking, 100% blocking, or something in between, the activity of logging events is common throughout. Event logging is not sufficient for a capability to be mapped to DETECT. If that were the minimum qualification, then we could have virtually any capability that generates logs be labeled as DETECT.
+
+To remain consistent with the structure of the Cyber Defense Matrix, an IDS, despite its name, should align as a PROTECT function, not a DETECT one. It simply logs network activities and generates events based on what it deems to be suspicious traffic. On closer inspection, most IDS events turn out to be false positives. The activity of a human actually monitoring those alerts and deciding what action (if any) to take is the essence of the true DETECT function, and that usually does not happen with an IDS, but rather with the next security capability below.
+
+Security information and event management. SIEMs provide situational awareness by aggregating event telemetry from various log sources and correlating them together to help security analysts determine if an intrusion or compromise has occurred. This is a right of boom activity and aligns with the function of DETECT.5
+
+The asset class mapping depends on our analytic use-case for the SIEM. If we are using a SIEM to consume IDS and firewall logs to help us discover an intrusion in our NETWORK, then the mapping is NETWORK-DETECT. Similarly, if we are ingesting Windows logs and anti-virus logs into a SIEM to find a compromised endpoint, then the mapping is DEVICE-DETECT. Consuming DLP logs to look for compromised data would map to DATA-DETECT. Processing WAF logs to look for a compromised web application would map to APPLICATION-DETECT.
+
+Traditionally, these use cases were performed in isolation, leveraging narrow sets of information across a limited set of assets to discover intrusions. With the advancement of technology, we are seeing tools that can bring broader sets of information across the complete range of assets described by the Cyber Defense Matrix. This convergence is at the heart of the eXtended Detection and Response (XDR) category of security products, which I will describe in greater detail in Chapter 9.
+
+Phishing simulations and tests. Just as we scan for vulnerabilities in other asset classes, we also want to routinely scan for vulnerabilities and potential exposures in our USERS. One common mechanism to conduct this “scan” is through a background check. Unfortunately, these are usually done only at the initial onboarding and are often not done continuously. Phishing tests would be equivalent to conducting regular, continuous vulnerability scans of USERS. By sending a properly calibrated simulated phishing email, we can determine how susceptible a USER is to a phishing attack. Those USERS who are insufficiently skeptical about downloading unknown attachments or clicking links from suspicious senders are likely to be phished and should thus be considered more vulnerable. Vulnerability scanning is an IDENTIFY function, so this category maps to USER-IDENTIFY.6
+
+Phishing awareness training. We often assume that if a user is vulnerable to phishing emails, we have to immediately fix that vulnerability. However, this is not how we treat other vulnerabilities in other asset classes. We typically conduct a risk assessment first. In the case of USERS, we should consider other threat and impact factors such as their role or level of access. If the combination of these factors results in a sufficiently high level of risk, then the user’s vulnerability should be addressed. The vulnerability remediation often manifests in the form of security awareness training. In the same way that we patch vulnerable servers, we patch user vulnerabilities through training. Patching is a PROTECT function, so the mapping for this category is USER-PROTECT.
+
+User behavior analytics. Insider threat is a common concern across many organizations. User behavior analytics (UBA) tools make it easier to discover this activity. UBA tools leverage two kinds of attributes associated with a USER to spot potentially malicious behavior: first, stateful attributes about the USER (e.g., age, job function, credit rating, etc.); and second, events and behavioral attributes surrounding the USER (e.g., time and place of DEVICE logins, type of activity on the NETWORK, APPLICATIONS access, etc.). In isolation and without proper context, these events are usually not sufficient on their own to deem particular USER behaviors malicious or even anomalous. However, with proper aggregation, correlation, and contextual analysis of these events, UBA tools can help determine if a USER is behaving as a compromised individual.7 This analysis to determine if a compromise has occurred is a DETECT operation. As such, UBA maps to USER-DETECT.
+
+A Note on the USER Asset Class
+
+It goes without saying that USERS are different from the other four asset classes. While the parallel structure of the Cyber Defense Matrix is intended to show how various security functions seem to repeat themselves across all five asset classes, we cannot treat people as machines, like the way we treat devices or other technology. People have rights and dignity, and they have agency, too. They can choose their own path — which also means they have the capability to make well-intentioned mistakes. These differences suffuse everything about the way the Cyber Defense Matrix approaches the USER asset class, but they are especially important to take into account when considering RESPOND functions, e.g., how to deal with an insider threat once they are confirmed to be acting maliciously. For machines, a typical RESPOND action could include termination and aggressive forensic investigation. The expectations are completely different for USERS than for other asset classes because not only can people make mistakes, but they can also learn from them if counseled and trained properly in the aftermath.
+
+Mapping Technologies to the Multi-Dimensional Matrix
+
+Now I am going to look at a number of ways security technologies get mapped onto the three-dimensional matrix we discussed in Chapter 1, in which assets owned and/or controlled by other parties like vendors, customers, employees, or even threat actors each get their own layer of the matrix as shown in the following figures.
+
+Extending the matrix in this way also enables us to capture additional security capabilities without crowding out core capabilities that focus on securing assets owned directly by the enterprise. Each layer is aligned with a different asset owner, enabling a higher level of detail to capture capabilities that are distinct for different types of asset owners. Here are examples of how security capabilities map into the extended layers for assets owned by Threat Actors and Vendors.
+
+Threat Actor Owned Assets
+
+Threat Intelligence. The activity of threat intelligence is the gathering of information about threat actors. Threat actors also own DEVICES, NETWORKS, APPLICATIONS, and DATA. The threat actors themselves represent the USERS part of the matrix. Gathering details about their assets is similar to the activity of inventorying, which aligns to IDENTIFY. We can then think of threat intelligence as the activity of inventorying all of the threat actors’ assets, including attributing who they are. Various threat intelligence providers specialize in one or more of the five asset classes. The following examples show how these threat intelligence capabilities can be mapped to specific threat actor assets and aligned against the Cyber Defense Matrix.
+
+    Compromised hosts ↣ DEVICE-IDENTIFY
+    Malware ↣ APPLICATION-IDENTIFY
+    Bulletproof networks ↣ NETWORK-IDENTIFY
+    Stolen data ↣ DATA-IDENTIFY
+    Attacker attribution ↣ USER-IDENTIFY
+
+Deception Technologies. These technologies are designed to attract attackers, so they might seem to fall into the function of DETECT. But in fact, deception technologies work on the threat actor owned asset layer, and they are defined as part of the IDENTIFY function. Deception technologies provide information about threat actor assets, their targets (e.g., honey documents map to DATA-IDENTIFY), the machines they are using (DEVICE-IDENTIFY), and their tools (e.g., the malware and legitimate applications they are abusing, all map to APPLICATION-IDENTIFY). They can also tell us where threat actors are coming from (NETWORK-IDENTIFY). The mapping aligns under the function of IDENTIFY. The asset mapping is based on which type of attacker asset is being enumerated by the deception technology.
+
+Sandbox technologies. These classify malware deployed by attackers and map to APPLICATION-IDENTIFY in the threat actor owned asset layer.
+
+Note that with attacker assets, we have no desire to PROTECT their assets. We want to inventory them (IDENTIFY), and some law enforcement or intelligence agencies might want to know their true identity (USER-IDENTIFY) or the vulnerabilities that their hosts have (DEVICE-IDENTIFY), but there is no need to expend our energy to secure a threat actor’s assets.
+
+Vendor Owned Assets
+
+Cloud access security broker. A cloud access security broker (CASB) appears in the vendor layer of the matrix because the assets being secured are owned by a third party. Typically, the owner of the asset would be a Software-as-a-Service (SaaS) provider. Although a few major SaaS providers offer enterprise-level security controls, most SaaS providers lack these features. So CASBs exist to wrap a layer around SaaS applications to enable enterprise security features such as application discovery, fine grained authorization to specific features, DLP, and logging. In a nutshell, CASBs attempt to extend enterprise-class security controls into a vendor-owned application. The mapping for CASBs is APPLICATION-IDENTIFY and APPLICATION-PROTECT in the vendor owned asset layer.
+
+CASBs have generally failed to provide DETECT or RESPOND capabilities. Two new technologies purport to address these gaps: cloud detection and response, and extended detection and response (XDR). The mapping for these security capabilities are APPLICATION-DETECT and APPLICATION-RESPOND in the vendor owned asset layer.
+
+Vendor risk assessment/third-party risk scoring. Companies offering vendor risk assessment and third party risk scoring gather information about a vendor’s assets and perform a security assessment of those assets to understand the security posture of that vendor. These companies employ one of two methodologies for collecting this information: outside-in assessments and inside-out assessments. Outside-in assessments look at public-facing assets. These assessments are easy to conduct but are often incomplete. Inside-out assessments can be conducted either as a paperwork exercise like a questionnaire, or as a technical assessment by auditors, penetration testers, or red teams. The mapping for capabilities in this category align against the IDENTIFY function across all the assets within the vendor owned asset layer. The subfunction is vulnerability identification, rather than inventorying or classifying, because the goal of these assessments is to determine if vendors leave their assets in a vulnerable state, thereby introducing added risk to their customers.
+
+Mapping Controls Testing
+
+We also conduct various forms of testing to validate that we have the right controls and verify that these controls are set up correctly to secure our environment. The mapping of the testing activity depends on the security function being evaluated and which specific assets are subject to those controls. The following four controls testing activities are common across many organizations; however, they are often misunderstood with respect to their differentiation and intent. Mapping these activities to the Cyber Defense Matrix makes the finer distinction among these activities much clearer.
+
+Vulnerability scanning/assessment. Vulnerability scanning is an IDENTIFY activity, testing our configuration controls. It answers the questions, “Did we configure or build everything properly?” and “Did we do it in a way that is free of vulnerabilities?” The asset class mapping depends on the asset being scanned or evaluated. For example, technologies that scan for misconfigured open file shares or publicly accessible S3 buckets would be mapped to DATA-IDENTIFY. The skill set to search for zero-day vulnerabilities in Windows would be mapped to DEVICE-IDENTIFY.
+
+Penetration testing. Penetration testing is a PROTECT activity intended to assess our preventative controls. Presuming we have a vulnerability (patched or not), it answers the question, “Do we have controls in place which mitigate that vulnerability or prevent its exploitation?” Penetration testing is designed to determine if our environment can be penetrated by exploiting a vulnerability or if the vulnerability has been mitigated through other preventative controls. Penetration testing should not be asking the question, “Is there a vulnerability?” Apparently it often does, however, because a common complaint of those who purchase these services is that they have instead received a vulnerability scan. This is also the reason why it is wasteful to do a penetration test without having done a vulnerability scan first.8
+
+The asset class that is being tested is important. We can break down each type of penetration testing to the underlying asset that is being evaluated. For example:
+
+    Social engineering ↣ USER
+    Client side testing ↣ DEVICE
+    Web application testing ↣ APPLICATION
+    Wireless wardriving ↣ NETWORK
+
+Breach and attack simulation (BAS). Designed to test and assess detection controls, BAS falls into DETECT. The question it is answering is, “If I have a vulnerability and it is exploited, will the attack be successful?” But more importantly, “Will I know?” BAS is designed to test whether the alarms I set go off as they are supposed to when the attack happens. That will tell me whether an actual attack will be spotted. With BAS, many tests are designed to assess “inside out” controls, i.e., those alarms designed to prevent the exfiltration of data. Is the exfil activity itself logged as an event? Do I have filters that flag it as an alert? Does the alert get to the systems that a human analyst will look at? In other words, is it logged, flagged, and delivered? When an alert is delivered as part of a BAS, it is suppressed so as not to waste the analyst’s time responding to a fictional intrusion.
+
+Red team. These activities test responsive controls and fall under RESPOND. They answer the questions, “If an intrusion occurs, will my security team notice and act on it?” and “Will they be able to get rid of it?” Unlike in a BAS, I do not suppress an alert triggered by a red team intrusion. I want the analyst to see it so I can assess whether they identify it correctly and respond appropriately.
+
+This is what a red team is for: to test response controls enacted by the blue team when an intrusion is discovered. I would argue that a red team should not need to have people skilled in vulnerability assessment or penetration testing to be successful. It is commonly assumed that red teams must have people who know how to discover new vulnerabilities and break into the perimeter of an organization. But, in my view, red teams simply need to trigger the alerts designed to drive blue team response actions.
+
+Red teams should remember that their primary responsibility is to test response controls, not the other controls. I do think that red team members are better at what they do when they understand all four controls-testing functions, but they should rely upon existing tools and capabilities to test those functions and only supplement as needed when those tools and capabilities lack sufficient coverage. There should be no expectation that red teamers can find the latest zero-day.
+
+1	https://www.optiv.com/navigating-security-landscape-guide-technologies-and-providers
+
+2	https://momentumcyber.com/docs/CYBERscape.pdf
+
+3	This points to the general confusion that we have when we talk about securing applications. At a high level, we are trying to secure applications that were built either by us or by someone else. If they were built by us, then the security capabilities will tend to be found in the APPLICATION asset class. On the other hand, if they were built by others (and bought by us), then the security capabilities will tend to be found in the DEVICE asset class instead.
+
+4	As mentioned in the footnote above, the term “application” here generally refers to black box software that organizations buy. Therefore, “application control” maps to the DEVICE asset class.
+
+5	There is a degree of uncertainty at the heart of the DETECT function. If we could consistently determine that a defined set of events is always malicious or unwanted (i.e., DETECT), then it makes sense for us to proactively block it. Why would we allow a “boom” if we can prevent it (i.e., PROTECT) without causing any other business disruption? Many events analyzed by a SIEM start off in an uncertain state. Over time, we might gain a better understanding of how to interpret a given set of events, allowing us to confidently block the actions that led to the events without any unintended consequences. When this happens, the analysis and corresponding actions can move from being reactive (DETECT and RESPOND) to being proactive (PROTECT).
+
+6	I often hear horror stories of companies that attempt to conduct a simulated phishing campaign only to suffer backlash from their users as they complain about how unfair a particular campaign is. Usually, this happens when the simulation is not properly calibrated to the skill level of the individual. The phishing campaigns that get the most complaints are those that employ more advanced techniques but are delivered to individuals whose skill level or role are not commensurate with the phishing test’s difficulty level. This is the equivalent to giving a calculus test to a kindergartner and then punishing them for failing, a surefire recipe for complaints and tantrums. This calibration should also account for the role of the individual. For example, a system administrator of critical systems may warrant receiving more aggressive or sophisticated phishing tests. This pattern of calibration can be seen in other asset classes (e.g., rigorous scanning of Internet-facing servers) and should be adopted when scanning USERS for vulnerabilities.
+
+7	Account takeover may result in outside actors posing as employees but exhibiting the characteristics of an insider threat. Regardless of whether the actual employee is compromised or the employee’s digital persona is compromised, the goal is to determine if we have a compromised USER in our midst.
+
+8	Penetration testing can include an independent vulnerability assessment, but it does not require one. A penetration test should be informed by the results of previous vulnerability scans. If an independent vulnerability assessment is conducted and it reveals previously undiscovered vulnerabilities, this points to a need to improve vulnerability scanning capabilities.
+
+Figure 4: Security Category Mapping for Threat Actor Owned Assets
+
+Figure 5: Security Category Mapping for Customer Owned Assets
+
+Figure 7: Security Category Mapping for Employee Owned Assets
+
+Figure 6: Security Category Mapping for Vendor or Third Party Owned Assets
+
+Chapter 9
+
+Dealing with the Latest Security Buzzwords
+
+Jargon live in the swamps. They feed on attention.
+
+If they cannot get that,
+they’ll settle for fear and confusion.
+
+- Carlos Bueno
+
+Staying Relevant Amid Change
+
+In some ways, a cybersecurity model like the Cyber Defense Matrix resembles a scientific theory or paradigm. It should be able to explain the world as we know it right now while also accommodating and explaining new developments or discoveries. When a new discovery occurs or a new technology emerges, the scientific theory should be able to show how these novel developments are explained by the theory without contradictions. Furthermore, scientific theories should be able to predict new discoveries.
+
+In the same way, the Cyber Defense Matrix needs to demonstrate its continuing relevance as new security technologies, architectures, and approaches arrive. It needs to show how those new products, capabilities, and designs still fit into the model the matrix provides. The matrix needs to prove its continuing utility by showing how it adds explanatory value to new things that appear in security without changing the core structure or foundations of the matrix. I have already covered the predictive power of the Cyber Defense Matrix in Chapter 8. In this chapter, I will cover some of the buzzwords that we often encounter in the marketplace and show how the Cyber Defense Matrix can explain these terms and shed new insights on how to see these buzzwords in a broader context.
+
+Zero Trust and Secure Access Service Edge
+
+To understand how Zero Trust and Secure Access Service Edge (SASE) map to the Cyber Defense Matrix, it helps to understand how to depict the old model of access before we started embracing zero trust principles.
+
+In the past, we secured our enterprise at the network perimeter. Like a castle, our assets were surrounded by a moat that created a trust boundary. As shown in Figure 44, access inside to assets within this trust boundary (the TO column) was controlled through a network-centric gateway, such as a firewall or virtual private network connection. Once inside this trust boundary, transitive trust is implicitly granted, giving those inside the authorization (AuthZ) to reach all other assets within the trust boundary.
+
+Figure 44: Network Perimeter-Based Access Model
+
+To gain initial access, we had to present credentials for authentication (AuthN) using identity attributes associated with the requesting entity (the FROM column). This included robust credentials such as device certificates and two factor authentication, but also weak identity credentials such as username and password or an IP address within specific ranges.
+
+To map this architecture to the Cyber Security Matrix, we can look at each of the five asset classes as both a requester and a resource. For each asset class, there is a “FROM” and a “TO.” The requester represents the FROM part of the equation, and the resource that the requester is trying to get represents the “TO” portion.
+
+We can also look at this from the standpoint of the difference between authentication and authorization. For authentication, or AuthN, we want to get FROM the entity some kind of proof of identity to ensure that it is actually who or what it says it is. For authorization, or AuthZ, we want to control what that entity can access, ensuring it can only get TO the resources it is entitled to use.
+
+Identity attributes from DEVICE A, NETWORK B, or USER E are presented to NETWORK G. If the identity attributes used for authentication are sufficiently trustworthy, then these assets are granted access to NETWORK G, from which those assets are implicitly given authorization to reach other assets within the trust boundary (DEVICE F, APPLICATION H, DATA I, and USER J).
+
+As we have discovered through lessons learned from past security breaches, the assumptions underlying this security model are flawed. The network perimeter has certainly never been impenetrable. Attackers have repeatedly shown their cleverness in being able to get through. The porous nature of the perimeter also undermines the assumption that anyone inside it can be considered trustworthy. Once inside the network perimeter, attackers face an unsegmented environment in which they can move laterally with relative ease. Worse, the growth of web-based and cloud services, mobile devices, and remote working has also undermined the central assumption that the organization’s key assets are behind the perimeter in the first place. Unfortunately, much of contemporary security architecture is designed based on these assumptions. If they are faulty, we need to redesign accordingly with a new set of assumptions — and a new set of foundations for what constitutes trustworthiness.
+
+Zero Trust design principles advocate that trustworthiness should not be automatically assumed when it comes to granting access to any resource. Instead, each resource has its own trust boundary, as shown in Figure 45. Network access is not dependent on network locality but rather upon the presentation of strongly bound identity assertions, usually in the form of device certificates, username and password, and a 2FA token. The identity assertions from both DEVICE A and USER E are processed by an access proxy before being granted access to NETWORK G.
+
+Figure 45: Zero Trust Network Access
+
+In a Zero Trust design, we never implicitly trust the entity requesting access. For USERS, we want to verify the trustworthiness of the USER by examining three types of attributes about the USER:
+
+    Structural attributes: E.g., username/password, fingerprint, date of birth, assigned multifactor tokens.
+    Environmental attributes: E.g., when and from where they are logging in, what their job is, what projects they are working on, etc.
+    Behavioral attributes: E.g., data about where they go in the NETWORK and what APPLICATIONS they try to access.
+
+Using these attributes, we can verify a USER’s identity and assign it a trustworthiness score. The structural attributes about the USER map to USER-IDENTIFY. Behavioral and environmental attributes are powerful additions to the verification armory. Structural characteristics can often be falsified (via account takeover) or subverted (in the case with insider threat). In the event that this happens, behavioral or environmental attributes can still give defenders important clues about a given identity.
+
+An identity may appear trustworthy based on its structural attributes but its environmental and behavioral attributes may suggest that it cannot be trusted at all. Is the employee logging in during work hours or in the middle of the night? Is their IP address in Northern Virginia or Shanghai or is it a Tor exit node? More importantly, these attributes can be monitored continuously to ensure that context or behaviors do not change in a way that decreases trustworthiness. Is a USER identity suddenly downloading much larger numbers of files than usual? Are they accessing DATA they have never used before?
+
+In some situations, we may want to go further and not just verify the USER, but also the DEVICE that they are using. We can similarly gather attributes about the DEVICE to determine its trustworthiness. Here are examples of each.
+
+    Structural attributes: a unique identifier like a PKI certificate or IMEI number, the patch level for the operating system, its configuration and security posture. These all map to DEVICE-IDENTIFY.
+    Environmental attributes: information about what other networks the device is connected with, what software it is running, etc.
+    Behavioral attributes: who it is communicating with and what data it is sending.
+
+To verify the identity of an entity and its associated trustworthiness, we can use an access proxy that can be dynamically configured to accept various identity attributes FROM the requesting entity and use those attributes to make real-time decisions about the resources it should have access TO. Any subsequent access to other resources should require its own explicit trust attestation. When we do this for access to NETWORK-centric resources, the current industry solution category is called Zero Trust Network Access (ZTNA) or Software Defined Perimeter (SDP). The access proxy that grants zero trust access to the NETWORK maps to NETWORK-PROTECT on the Cyber Defense Matrix.1
+
+Access to other types of resources represent other forms of Zero Trust access. For example, Zero Trust Application Access (ZTAA) leverages the same set of identity assertions but for access to APPLICATIONS as shown in Figure 46. These applications can be either custom in-house built applications or SaaS applications with the ability to support restricted access to enterprise accounts from only the zero trust access proxy. Since this type of access proxy is controlling access to APPLICATIONS, it would map to APPLICATION-PROTECT.
+
+Figure 46: Zero Trust Application Access
+
+This model can be easily extended to represent other forms of Zero Trust access to other asset classes. Figure 47 shows how it might manifest for DEVICE-centric resources, usually through protocols such as secure shell (SSH) or remote desktop protocol (RDP) or through a remote browser isolation (RBI) solution. Because these DEVICE assets often serve as a gateway to other resources, they may be allowed to reach into other trust boundaries, but to adhere to the zero trust mindset, these trusted links should be explicitly defined. The zero trust access proxy for DEVICE-centric assets would map to DEVICE-PROTECT.
+
+You may have noticed that depending upon the use case, I have mapped the zero trust access proxy to three boxes on the Cyber Defense Matrix (DEVICE-PROTECT, NETWORK-PROTECT, and APPLICATION-PROTECT). We can naturally expect a DATA-centric access proxy to emerge in the market and that is what we now see through emerging market categories such as Data Access Security Brokers or Secure Data Access Platforms.2
+
+Figure 47: Zero Trust Device Access
+
+I believe this mapping to multiple boxes defining how access to resources is protected reflects what is also happening with the evolution of Secure Access Service Edge (SASE), and specifically Security Service Edge (SSE), which is a framework that describes a way to securely connect one set of assets to another. SASE and SSE describe the convergence of multiple access mechanisms to unify visibility, improve the user experience, and simplify policy and management.
+
+However, I believe that the Cyber Defense Matrix offers an even broader way of thinking about how access can be managed and how trustworthiness can be established. Most vendors in the market that offer converged solutions only manage access to a subset of asset classes defined by the Cyber Defense Matrix (usually just NETWORK and APPLICATIONS). We will likely see future offerings that also encompass converged access for the DEVICE and DATA asset classes.
+
+In addition, there are other ways to establish higher levels of trustworthiness on the identity side of the zero trust equation. When we hear of an identity-centric perimeter, at present this is largely limited to DEVICE-centric and USER-centric identities. However, there are many other identity attributes from the other asset classes that could be factored in as shown in Figure 48. Taking this approach could increase the identity management burden, but it may be appropriate in circumstances where higher levels of trustworthiness are needed for access.
+
+Figure 48: Consuming More Identity Attributes for Greater Trustworthiness
+
+With these various forms of zero trust mapped to the Cyber Defense Matrix, as shown in Figure 49, the concept of zero trust can easily be applied across the board to other asset classes.
+
+This gives a much broader range of options for how we can design towards zero trust access. This is an illustration of the continuing power of the Cyber Defense Matrix — through pattern matching and the imposition of consistency — to not just illuminate current security trends and thinking, but to also predict the emergence of new technologies and security approaches.
+
+Figure 49: Mapping of Zero Trust Design Patterns
+
+Extended Detection & Response and Managed Detection & Response
+
+Attackers do not stay in designated lanes. As John Lambert once said, they think in graphs and leverage whatever assets are within reach to move towards their objective.3 These assets are not strictly limited to one type of asset class. If attackers can pivot to a SaaS APPLICATION after compromising an endpoint DEVICE or establish an unmonitored rogue system on a NETWORK, then we need tooling that can also track an attacker across this broad range of assets. Hunting for lateral movement requires tools that enable lateral analysis across multiple asset classes.
+
+Previously, we would find asset-specific hunting tools, such as endpoint/DEVICE detection and response (EDR), NETWORK detection and response (NDR), and USER behavior analytics (UBA). The NETWORK detection capabilities originally emerged from an older category called Network Traffic Analysis (NTA), which typically consumed network flow logs to uncover malicious activity within the NETWORK. These capabilities would map into the Cyber Defense Matrix as shown in Figure 50.4
+
+Figure 50: Mapping of Detection and Response Capabilities
+
+However, these capabilities were operated independently and did not correlate suspicious events across these separate asset classes. The need to conduct this cross-asset analysis resulted in the capability known as User and Entity Behavior Analytics (UEBA). This capability combined detection capabilities across DEVICES, NETWORKS, and USERS. Subsequently, eXtended Detection and Response (XDR) emerged with the addition of telemetry from cloud assets (both IaaS/PaaS and SaaS) and the ability to drive response action through security orchestration and automated response (SOAR) systems as shown in Figure 51.5
+
+Figure 51: Convergence of UEBA and SOAR to Create XDR
+
+As the Cyber Defense Matrix shows, as we move to the functions of DETECT and RESPOND, we have a greater dependency on PEOPLE to perform these functions. Despite the marketing language of vendors selling XDR solutions claiming that their products can displace PEOPLE, they simply do not operate effectively without knowledgeable and skilled personnel. However, many organizations have difficulty finding and hiring qualified personnel. As such, we have services such as Managed Detection & Response (MDR) that bring the necessary staff with the skillsets to address this dependency on PEOPLE.
+
+Cloud Security
+
+The term “cloud” is often as ambiguously defined as its physical namesake. It can refer to any number of assets, but in general, cloud security capabilities are easier to define and map to the Cyber Defense Matrix around two frames of reference:
+
+    Securing applications that we build
+    Securing applications built by others
+
+Applications that we build typically leverage Infrastructure as a Service (IaaS) and Platform as a Service (PaaS) offerings from major public cloud providers such as Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP). When considering cloud security in the context of IaaS/PaaS, we seek to secure our enterprise and customer-facing APPLICATIONS that we build and the IaaS/PaaS services that they are deployed on.
+
+Applications built by others are typically characterized as Software as a Service (SaaS) offerings such as Salesforce, Dropbox, Zoom, Microsoft Office 365, and Google Workspace. When considering cloud security in the context of SaaS, we seek to secure vendor APPLICATIONS that others build and our DATA that we put into it.
+
+Whether for IaaS/PaaS or SaaS security, there is a shared responsibility with the underlying provider that limits what we can directly see and control. Furthermore, the technical capabilities, required skill sets, and governance processes are distinct to each type of cloud security. However, the macro pattern of what we want to accomplish is generally the same. We want to ensure that we can extend our security controls to perform these functions:
+
+    IDENTIFY: The environment is catalogued and configured in accordance with best practices without unintended exposures.
+    PROTECT: If there are any problems, we want to be able to fix them easily. We also want to ensure that the environment is properly used and properly accessed.
+    DETECT and RESPOND: If an intrusion occurs in this environment, then we want capabilities to find and handle such a compromise.
+
+The DETECT and RESPOND capabilities for “cloud” were discussed previously under the topic of XDR, so I will not repeat them here. However, the capabilities under IDENTIFY and PROTECT deserve special attention because they have spawned a whole new set of buzzwords that can be understood more easily when mapped to the Cyber Defense Matrix.
+
+Cloud Security Posture Management and SaaS Security Posture Management
+
+The most common reason for security breaches in the cloud is misconfiguration by the customer. It is then no surprise that we see a plethora of solutions addressing this common challenge. The security categories of Cloud Security Posture Management (CSPM) and SaaS Security Posture Management (SSPM) address this problem space. CSPM is sometimes characterized as addressing the SaaS part of the problem, but most often, it is exclusively focused on securing IaaS/PaaS configurations.6 SSPM is exclusively focused on SaaS applications, but with deeper configuration support for a larger variety of SaaS applications.
+
+For CSPM and SSPM, the main function is to find configuration flaws, which map to the function of IDENTIFY. Some of these tools purport to fix these flaws, in which case, they would also map to the function of PROTECT, but many CSPM and SSPM solutions do not actually fix the flaw but simply provide guidance on how to fix it. The table below shows how various cloud resources map to the asset classes of the Cyber Defense Matrix for CSPM and SSPM. The asset class mapping for a given CSPM or SSPM solution would depend upon the type of cloud resource being assessed. Not all CSPM solutions cover all types of cloud resources.
+
+Table 6: Asset Coverage for CSPM and SSPM
+
+Cloud Workload Protection Platform and SaaS Data Loss Prevention
+
+In addition to ensuring that the cloud resource is configured properly, we also want to ensure that it is used properly. With IaaS/PaaS, this usually involves a technology capability called Cloud Workload Protection Platforms (CWPP). This capability covers part of the shared responsibility model that is entirely within the customer’s area of responsibility, namely the content within a virtual machine, container, or serverless function that runs the application workload. Despite having the word “protection” in the name, some CWPP solutions only perform the IDENTIFY function of capturing vulnerabilities present in a workload. Others are able to orchestrate the removal of those vulnerabilities through the development pipeline or the build process, in which case, those CWPP capabilities would also map to the PROTECT function. The asset class mapping is a combination of DEVICES (for virtual machines) and APPLICATIONS (for containers and serverless functions).
+
+For SaaS, the primary concerns related to usage revolve around the unmanaged or unintended proliferation of corporate data. As such, the primary capability to address this concern is SaaS Data Loss Prevention (SaaS DLP)capabilities. SaaS DLP features are available within the suite of capabilities of Cloud Access Security Brokers (CASB) products, but some products operate natively within the SaaS application through various API hooks offered by the SaaS provider. In other cases, the SaaS provider itself offers DLP as an add-on for higher level, enterprise-tier subscriptions. When it comes to the mapping of this category, DLP is certainly within the function of PROTECT. However, when it comes to the mapping of the asset, it may get a little confusing. The most intuitive mapping is to DATA-PROTECT. However, this would not be on the vendor layer of the matrix since we are not actually trying to PROTECT the vendor’s DATA but our own.
+
+Cloud Infrastructure Entitlement Management and SaaS Access Management
+
+In addition to ensuring that our cloud resources are properly configured and used, we also want to ensure that access is properly managed. The product category of Cloud Infrastructure Entitlement Management (CIEM), also known as Cloud Identity Governance, helps us manage permissions and entitlements so that we can adhere to the principles of least privilege and limit the blast radius of any compromised accounts within IaaS and PaaS environments.
+
+There are similar capabilities emerging in the SaaS space; however, because of the large variety of SaaS applications (as opposed to the three major IaaS/PaaS providers), the ability to manage entitlements and permissions across a broad range of SaaS applications is difficult for most vendors to support. As such, most vendors in this space cover only the most popular SaaS applications.
+
+Both CIEM and SaaS Access Management solutions claim to cover both human and non-human identities, but the main strength of these solutions at the current time are in managing permissions and entitlements for human identities. As such, the capabilities as they exist today map to USER-IDENTIFY.
+
+For IaaS/PaaS, these three categories of capabilities map to the Cyber Defense Matrix as shown in Figure 52.
+
+Another new category has emerged called Cloud Native Application Protection Platforms (CNAPP) that combine CSPM, CWPP, and CIEM capabilities. This makes sense with respect to the natural adjacencies among these capabilities. There has not been an equivalent convergence in the SaaS security landscape, but one may emerge eventually.
+
+Figure 52: Mapping of CSPM, CWPP, and CIEM
+
+Cyber Asset Attack Surface Management
+
+Attack surface management (ASM) enables us to gain structural awareness of our environment, particularly as it pertains to what is exposed to attackers. This awareness is typically gained through both external scanning techniques and internal data aggregation, often through API integrations. These two approaches complement each other well to validate the findings from both sources. Ideally, the attack surfaces discovered through external scanning will match that which is known through internal data sources.
+
+The discovery, prioritization, and monitoring of attack surfaces align under IDENTIFY. Fixing any issues would align under PROTECT; however most ASM capabilities at the present time only perform the IDENTIFY-related activities.
+
+The asset classes associated with ASM vary based on the vendor and their specific techniques for discovering assets and their associated attack surfaces, but most focus on DEVICES, NETWORKS, and APPLICATIONS. The recently defined category of Cyber Asset Attack Surface Management (CAASM) takes a broader view of what constitutes an asset and counts everything under an organization’s control. However, without a prescriptive list, we may leave out an asset for consideration. This is where the Cyber Defense Matrix can come to the rescue again to provide a comprehensive list of assets that we care about. These include the five assets directly owned by the organization, but also assets owned by our vendors, customers, and employees as discussed in Chapter 1.
+
+Moreover, the attack surfaces associated with these assets should not be seen in isolation. They are connected together, but often in ways that we cannot easily understand. Capabilities in the CAASM category, done properly, should aggregate information about all the assets defined in the multi-dimensional Cyber Defense Matrix and connect them together in a graph to enable us to understand how the assets and their associated attack surfaces relate to one another.
+
+Data Security Posture Management / Cloud DLP
+
+Data security posture management (DSPM) provides capabilities to discover, catalog, and classify the content of data stores and file repositories within and organization’s environment. As such, DSPM maps to DATA-IDENTIFY. This information is used to provide context about what should be the proper configuration of those resources.
+
+The emergence of the DSPM category should raise further questions around the meaning of “Security Posture Management” as a term. Posture is a configuration that is not inherently good or bad. A person standing up straight would be in a bad configuration if they wanted to sleep and a person lying prone would be in a bad configuration if they wanted to stay awake. Whether a configuration is actually good or bad depends on having more context. In contrast, a vulnerability is inherently bad regardless of context.7
+
+Because bad configurations are context-dependent, it is important that we get as much context as needed to ensure that we make the right decisions on whether or not something that is flagged as a misconfiguration is actually bad. We often get reports from other tools (e.g., CSPM) about potentially misconfigured resources, such as an open S3 bucket or unencrypted datastore. However, these reports are often devoid of context, requiring the gathering of more information about the nature of the content or the purpose of the resource to properly determine if the current configuration is actually bad.
+
+DSPM products gather additional context based on the actual content of the data, observed access patterns, and existing permissions to help determine whether or not the existing configuration is actually bad. Because DSPM tools require a peek into one’s data, including potentially sensitive content, many organizations will likely choose to run the scanning component of a DSPM capability within the boundaries of their direct control and feed only the metadata of the content (e.g.., the data classification) back to the DSPM vendor.
+
+The DSPM category is gradually converging with the DLP category with a specific focus on IaaS- and SaaS-based data repositories (i.e., Cloud DLP). If DSPM incorporates measures to prevent actual data movement, then it may eventually also map to DATA-PROTECT.
+
+1	There is a danger in suggesting that there is such a thing as a “Zero Trust” product. Zero trust is an architectural design principle and not a product. Components of that architecture may be a product but they are not exclusively associated with zero trust designs. One can operate an access proxy without adhering to zero trust design principles.
+
+2	An access proxy is not needed for USER-PROTECT, though if one is needed, a good executive assistant does the job well.
+
+3	https://git.io/fpfZ5
+
+4	As of the writing of this book, the capabilities of APPLICATION detection and response and DATA detection and response (dance party anyone?) are now just emerging in the market and have not gained significant traction, but the matrix easily demonstrates how these capabilities can be anticipated.
+
+5	The ambiguity of the term “extended” should be evident. As mentioned previously, the Cyber Defense Matrix helps clarify what “extended” should mean and what we should be asking of vendors when they claim to have a complete solution that addresses the full range of assets.
+
+6	There is a long tail of SaaS applications. If there is support for SaaS applications, it is usually a very limited set of the most popular ones.
+
+7	Whether one choosed to fix or address the vulnerability requires additional context (e.g., threat and impact), but this does not change the fact that a vulnerability is still bad regardless of context.
