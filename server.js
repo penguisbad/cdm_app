@@ -9,11 +9,6 @@ const pinecone = require("@pinecone-database/pinecone");
 const cheerio = require("cheerio");
 const HTMLParser = require("node-html-parser");
 const express = require("express");
-const lcOpenAI = require("langchain/chat_models/openai");
-const lcTextSplitter = require("langchain/text_splitter");
-const lcEmbeddings = require("langchain/embeddings/openai");
-const lcMemory = require("langchain/vectorstores/memory");
-const lcChains = require("langchain/chains");
 const request = require("request");
 const fs = require("fs");
 
@@ -25,40 +20,47 @@ pineconeClient.init({
     environment: "gcp-starter",
     apiKey: pineconeKey
 })
-const llm = new lcOpenAI.ChatOpenAI({ modelName: "gpt-3.5-turbo", temperature: 0 });
 
-//let docs, vectorStore, vectorStoreRetriever, chain;
-
-//const text = fs.readFileSync("cdm_book.txt", "utf8");
-//const textSplitter = new lcTextSplitter.RecursiveCharacterTextSplitter({ chunkSize: 500 });
-
-const askChatGPT = async (prompt) => {
-    const response = await llm.predict(prompt);
+const askChatGPT = async (prompt, temperature) => {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        headers: {
+            "Authorization": "Bearer " + openAIKey,
+            "Content-Type": "application/json"
+        },
+        method: "POST",
+        body: JSON.stringify({
+            "model": "gpt-3.5-turbo",
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": temperature
+        })
+    });
     return response;
 }
 
-const askChatGPTbasedOnBook = async (prompt) => {
-    const response = await chain.call({ query: prompt });
-    return response;
+const summary = async (input) => {
+    console.log(input);
+    let response = await askChatGPT("Give of a short summary of this: " + input, 0);
+    return response.choices[0].message.content;
 }
 
-const getDescription = (url) => {
-    let description;
-    request(url, {}, (error, response, body) => {
+const getDescription = async (url, func) => {
+    request(url, {}, async (error, response, body) => {
         if (error) {
             console.log(error);
         }
+        
         let $ = cheerio.load(body);
-        description = $('meta[property="og:description"]').attr("content");
+        let description = $('meta[property="og:description"]').attr("content");
         if (description == undefined) {
-            description = summary($("html").text());
+            //description = await summary($("html").text());
         }
+        func(description);
     });
-    return description;
 }
 
 
 const getEmbeddings = async (input) => {
+    console.log(input);
     const response = await fetch("https://api.openai.com/v1/embeddings", {
         headers: {
             "Content-Type": "application/json",
@@ -85,15 +87,15 @@ const queryIndex = async (vector) => {
     return response;
 }
 
-const mapProduct = (input) => {
+const mapCategory = (input) => {
     
 }
 
-const go = async () => {
+const go = () => {
     const app = express();
     app.get("/app", (req, res) => {
         fs.readFile("app.html", "utf8", async (error, pageHTML) => {
-            if (req.query.product == null) {
+            if (req.query.url == null) {
               res.send(pageHTML);
               return;
             }
@@ -102,13 +104,16 @@ const go = async () => {
               return;
             }
 
-            const embedding = await getEmbeddings(req.query.product);
-            const response = await queryIndex(embedding["data"][0]["embedding"]);
-            
-            let root = HTMLParser.parse(pageHTML);
-            root.getElementById("explanation").innerHTML = response.matches[0].metadata.category;
-            res.send(root.toString());
-          });
+            await getDescription(req.query.url, async (description) => {
+                const embedding = await getEmbeddings(description);
+                
+                const response = await queryIndex(embedding["data"][0]["embedding"]);
+                
+                let root = HTMLParser.parse(pageHTML);
+                root.getElementById("explanation").innerHTML = response.matches[0].metadata.category;
+                res.send(root.toString());
+            });
+        });
     });
     app.listen(8080);
 }
